@@ -6,8 +6,12 @@ module.exports = (req, res, next) => {
     search[key] = { $regex: search[key], $options: "i" };
   }
 
+  let limit = Number(req.query.limit);
+  limit = limit > 0 ? limit : Number(process.env.DEFAULT_LIMIT);
+  console.log(limit);
+
   res.FilterList = async function (model) {
-    return await model.find({ ...search });
+    return await model.find({ ...search }).limit(limit);
   };
   next();
 };

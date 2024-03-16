@@ -10,6 +10,13 @@ module.exports.ProductsSchema = {
       data: data,
     });
   },
+  getSingleProducts: async (req, res) => {
+    const data = await ProductsSchema.findOne({ _id: req.params.id });
+    res.status(200).send({
+      error: false,
+      data: data,
+    });
+  },
 };
 
 // http://127.0.0.1:8002/products?search[title]=hello&search=[description]=mert
