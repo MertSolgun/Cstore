@@ -9,6 +9,7 @@ app.use(express.json());
 require("./db");
 //errorHandler
 app.use(require("./src/middlewares/errorHandler"));
+app.use(require("./src/middlewares/Filter"));
 
 //route
 app.use("/admin", require("./src/routes/adminRoutes"));

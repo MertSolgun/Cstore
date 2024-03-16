@@ -3,10 +3,17 @@ const { ProductsSchema } = require("../models/productsModel");
 module.exports.ProductsSchema = {
   list: async (req, res) => {
     const data = await ProductsSchema.find();
-    res.status(200).send({
-      error: false,
-      data: data,
-    });
+    if (data.length === 0) {
+      res.status(404).send({
+        error: true,
+        message: "There is no data",
+      });
+    } else {
+      res.status(200).send({
+        error: false,
+        data: data,
+      });
+    }
   },
   create: async (req, res) => {
     const data = await ProductsSchema.create(req.body);
@@ -37,6 +44,16 @@ module.exports.ProductsSchema = {
   },
   delete: async (req, res) => {
     const data = await ProductsSchema.deleteOne({ _id: req.params.productId });
-    res.sendStatus(data.deletedCount >= 1 ? 204 : 404);
+    if (data.deletedCount >= 1) {
+      res.status(200).send({
+        error: false,
+        message: `Product Id: ${req.params.productId} Deleted.`,
+      });
+    } else {
+      res.status(404).send({
+        error: true,
+        message: `Product Id: ${req.params.productId} already deleted.`,
+      });
+    }
   },
 };
