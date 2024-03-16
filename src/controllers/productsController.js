@@ -4,7 +4,7 @@ const { ProductsSchema } = require("../models/productsModel");
 
 module.exports.ProductsSchema = {
   getProducts: async (req, res) => {
-    const data = ProductsSchema.find();
+    const data = await ProductsSchema.find();
     res.status(200).send({
       error: false,
       data: data,

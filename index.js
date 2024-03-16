@@ -11,8 +11,8 @@ require("./db");
 app.use(require("./src/middlewares/errorHandler"));
 
 //route
-
 app.use("/admin", require("./src/routes/adminRoutes"));
+app.use("/products", require("./src/routes/productsRoutes"));
 
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
