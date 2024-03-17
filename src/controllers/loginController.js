@@ -3,7 +3,7 @@ const { loginSchema } = require("../models/loginModel");
 const { registerSchema } = require("../models/registerModel");
 
 module.exports.loginSchema = {
-  //burasi duzelicekk!
+  
   list: async (req, res) => {
     const { email, password } = req.session;
     if (email && password) {
@@ -73,8 +73,3 @@ module.exports.loginSchema = {
     });
   },
 };
-
-//req.bodydan login olucak kullanicinin email pas bilgilerini aliyoruz
-// eger email ve pass varsa registeruserData yani veritabanindaki register olmus kullaniciya req.body daki emaili verip onu getiriyoruz.
-
-//registerdata pass kullanabiliriz.. ! req.body deki email ile pass bilgiside geliyor
