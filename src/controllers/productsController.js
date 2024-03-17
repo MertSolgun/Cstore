@@ -20,3 +20,8 @@ module.exports.ProductsSchema = {
 };
 
 // http://127.0.0.1:8002/products?search[title]=hello&search=[description]=mert
+
+// {
+//   "email":"merts2@.com",
+//   "password":"fdfdfdfdf"
+// }

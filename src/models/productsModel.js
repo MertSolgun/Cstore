@@ -4,6 +4,8 @@ const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      required: true,
+      trim: true,
     },
   },
   {
@@ -51,7 +53,7 @@ const productsSchema = new mongoose.Schema(
       required: true,
     },
     images: {
-      type: String,
+      type: [String],
       required: true,
     },
   },

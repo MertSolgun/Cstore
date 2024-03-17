@@ -1,4 +1,47 @@
-const { ProductsSchema } = require("../models/productsModel");
+const { ProductsSchema, CategorySchema } = require("../models/productsModel");
+
+module.exports.CategorySchema = {
+  list: async (req, res) => {
+    const data = await CategorySchema.find();
+    res.status(200).send({
+      error: false,
+      data: data,
+    });
+  },
+  create: async (req, res) => {
+    const data = await CategorySchema.create(req.body);
+    res.status(201).send({
+      error: false,
+      data: data,
+    });
+  },
+  read: async (req, res) => {
+    const data = await CategorySchema.findOne({ _id: req.params.categoryId });
+    res.status(200).send({
+      error: false,
+      data: data,
+    });
+  },
+  update: async (req, res) => {
+    const data = await CategorySchema.updateOne(
+      { _id: req.params.categoryId },
+      req.body
+    );
+    const newData = await CategorySchema.find({ _id: req.params.categoryId });
+    res.status(200).send({
+      error: false,
+      data: data,
+      newData: newData,
+    });
+  },
+  delete: async (req, res) => {
+    const data = await CategorySchema.deleteOne({ _id: req.params.categoryId });
+    res.status(204).send({
+      error: false,
+      data: data,
+    });
+  },
+};
 
 module.exports.ProductsSchema = {
   list: async (req, res) => {
