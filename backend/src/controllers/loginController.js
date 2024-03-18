@@ -77,11 +77,3 @@ module.exports.loginSchema = {
     });
   },
 };
-
-//req.bodydan login olucak kullanicinin email pas bilgilerini aliyoruz
-// eger email ve pass varsa registeruserData yani veritabanindaki register olmus kullaniciya req.body daki emaili verip onu getiriyoruz.
-
-//registerdata pass kullanabiliriz.. ! req.body deki email ile pass bilgiside geliyor
-
-// samet123@gmail.com
-// samet123
