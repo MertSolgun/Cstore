@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap");
+
+@layer components {
+  .loginDiv {
+    background: linear-gradient(71deg, #feaf00 19.35%, #f8d442 90.12%);
+    @apply flex justify-center items-center min-h-screen;
+  }
+  .registerDiv {
+    background: linear-gradient(71deg, #163490 19.35%, #f8d442 90.12%);
+    @apply flex justify-center items-center min-h-screen;
+  }
+  .login-input {
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+    padding: 0.6rem;
+    @apply focus:outline-main focus:caret-main;
+  }
+  .login-input::placeholder {
+    color: #cdcdcd;
+    @apply font-montserrat text-[12px] font-[400];
+  }
+}
+
+.swiper {
+  width: 50%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 50%;
+  margin: 30px auto;
+}
+
+.navbar-bg {
+  background-color: rgba(0, 0, 0, 0.757);
+}
+
+.notFound {
+  font-family: Rubik Scribble;
+}
