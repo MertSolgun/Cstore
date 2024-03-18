@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const removeLocal = async () => {
     try {
-      const logOut = await axios.get("http://127.0.0.1:8002/users/logout/");
+      const logOut = await axios.post("http://127.0.0.1:8002/users/logout/");
       localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {
