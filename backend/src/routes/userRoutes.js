@@ -5,7 +5,7 @@ const { loginSchema } = require("../controllers/loginController");
 //register
 router.route("/login").get(loginSchema.list).post(loginSchema.login);
 
-router.route("/register").post(registerSchema.create);
+router.route("/register").get(registerSchema.list).post(registerSchema.create);
 
 router.route("/logout").get(loginSchema.logout);
 

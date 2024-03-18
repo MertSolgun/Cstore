@@ -1,20 +1,18 @@
 const Encrypt = require("../helpers/Encrypt");
 const { loginSchema } = require("../models/loginModel");
 const { registerSchema } = require("../models/registerModel");
+const jwt = require("jsonwebtoken");
+
+const secretKey = process.env.SECRET_KEY;
 
 module.exports.loginSchema = {
   //burasi duzelicekk!
   list: async (req, res) => {
-    const { email, password } = req.session;
-    if (email && password) {
-      const data = await loginSchema.find({ email, password });
-      res.status(200).send({
-        error: false,
-        data: req.session,
-      });
-    } else {
-      res.status(401).send({ error: true, message: "Unauthorized" });
-    }
+    const data = await loginSchema.find({});
+    res.status(200).send({
+      error: false,
+      data: req.session,
+    });
   },
   read: async (req, res) => {
     const data = await loginSchema.findOne({ _id: req.params.id });
@@ -30,6 +28,10 @@ module.exports.loginSchema = {
       data: data,
     });
   },
+
+  //credentials
+  //simpletoken
+  //jwt
   login: async (req, res) => {
     const { email, password } = req.body;
 
@@ -41,20 +43,22 @@ module.exports.loginSchema = {
         registerData.email === "admin@admin.com" &&
         registerData.password === Encrypt(password)
       ) {
-        req.session.email = registerData.email;
-        req.session.password = registerData.password;
-        req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3;
+        const token = jwt.sign({ email: registerData.email }, secretKey, {
+          expiresIn: "3d",
+        });
         res.send({
+          token: token,
           data: registerData,
-          message: "Admin Login Ok",
+          message: "Admin Login succesfully",
           isAdmin: true,
         });
       } else if (registerData && registerData.password === Encrypt(password)) {
-        req.session.email = registerData.email;
-        req.session.password = registerData.password;
+        const token = jwt.sign({ email: registerData.email }, secretKey, {
+          expiresIn: "3d",
+        });
         res.send({
-          data: registerData,
-          message: "User login ok",
+          token: token,
+          message: "User login succesfully",
           isAdmin: false,
         });
       } else {
@@ -78,3 +82,6 @@ module.exports.loginSchema = {
 // eger email ve pass varsa registeruserData yani veritabanindaki register olmus kullaniciya req.body daki emaili verip onu getiriyoruz.
 
 //registerdata pass kullanabiliriz.. ! req.body deki email ile pass bilgiside geliyor
+
+// samet123@gmail.com
+// samet123
