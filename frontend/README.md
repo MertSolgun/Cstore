@@ -1,5 +1,5 @@
 <h1 align="center">
-XStore <a href="https://xstore-nine.vercel.app/">Live</a>
+XStore 
 </h1>
 <p>
  
